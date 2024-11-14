@@ -1,6 +1,12 @@
+.auth {
+  display: flex;
+  gap: 16px;
+}
+
 .bg-primary {
   background-color: $primaryColor;
   border: 1px solid $primaryColor;
+  color: rgba(255, 255, 255, 1);
 }
 
 .btn {
@@ -11,7 +17,22 @@
   padding: 10px 16px;
   border-radius: 4px;
 
-//   &:hover {
-//     opacity: 0.8;
-//   }
+  //   &:hover {
+  //     opacity: 0.8;
+  //   }
+}
+.login {
+  border: none;
+  color: rgba(35, 39, 81, 1);
+  &:hover {
+    background-color: rgba(236, 237, 244, 1);
+  }
+}
+
+.sign-up {
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(45, 50, 105, 1);
+  }
 }
