@@ -57,19 +57,58 @@ header {
       border-radius: 12px;
       box-shadow: rgba(0, 0, 0, 0.05);
       background-color: rgba(255, 255, 255, 1);
-      // background-color: black;
+      background-color: black;
       //   position: fixed;
-      @include tablet_768 {
+      @include smallMobile {
+        border-radius: 0;
+        top: 0;
+        // max-width: 320px;
+      }
+      //   @include tablet_768 {
+      //     max-width: 1100px;
+      //   }
+      @include tablet_900 {
+        border-radius: 12px;
+        top: 20px;
+        max-width: 850px;
+      }
+      @include tabletAndAbove {
+        max-width: 970px;
+      }
+      @include laptop {
+        max-width: 1150px;
       }
       @include largerLaptop {
         max-width: 1350px;
       }
+
       & .nav-bar-ul {
         display: flex;
-        justify-content: center; // Centers the entire nav bar
+        justify-content: space-between; 
         align-items: $align;
-        gap: 20px;
+        width: 100%;
         padding: 0;
+        @include smallMobile {
+          display: none;
+        }
+        @include tablet_900 {
+          display: flex;
+        }
+        ul {
+          display: flex;
+          justify-content: center;
+          position: relative;
+
+          margin: 0 auto;
+          gap: 20px;
+
+          @include smallMobile {
+            flex-direction: column;
+          }
+          @include tablet_900 {
+            flex-direction: row;
+          }
+        }
         li {
           padding: 8px;
           border-radius: 4px;
@@ -81,53 +120,193 @@ header {
           }
         }
       }
-    }
-    // .hamburger {
-    //   display: none;
-    // }
-  }
-}
-footer {
-  .footer {
-    background-color: rgba(27, 29, 62, 1);
-    margin-top: 30px;
-    padding: 48px 80px;
-    .footer-header {
-      .socials {
+      .menu {
         position: relative;
-        left: 6px;
+        // @include smallMobile {
+        //   display: none;
+        // }
+        &.active {
+          @include smallMobile {
+            position: absolute;
+            top: 75px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: white;
+            width: 80%;
+            border-radius: 6px;
+            text-align: center;
+            padding: 24px 0px;
+            margin: 0 auto;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font: {
+              size: 14px;
+            }
+            z-index: 100;
+          }
+        }
+      }
+
+      & .hamburger {
+        border: 0;
+        background-color: white;
+        @include smallMobile {
+          display: block;
+          cursor: pointer;
+        }
+        @include tablet_900 {
+          display: none;
+        }
+        & .img-hamburger {
+          width: 30px;
+          display: block;
+        }
+        & .x-icon {
+          padding-bottom: 4px;
+          display: none;
+        }
+        &.active {
+          .img-hamburger {
+            display: none;
+          }
+          .x-icon {
+            display: block;
+          }
+        }
       }
     }
-    & .footer-line {
-      padding-top: 25px;
+  }
+}
+
+.footer {
+  width: 100%;
+  padding: 48px 0;
+  background-color: rgba(27, 29, 62, 1);
+  position: relative;
+  top: 40px;
+  .footer-content {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0px auto;
+    padding: 0 80px;
+    @include smallMobile {
+      padding: 0 50px;
     }
-    & .footer-bottom {
-      padding-top: 40px;
-      color: rgba(203, 204, 208, 1);
-      font-size: $fontSize;
-      font-weight: 500;
-      line-height: 24px;
+    @include largeMobile {
+      padding: 0 80px;
+    }
+    @include tablet_768 {
+      padding: 0 20px; /* Adjust padding for tablet screens and above */
+    }
 
-      span {
-        margin: 0 10px;
+    @include tablet_900 {
+      padding: 0 20px;
+      max-width: 850px;
+    }
+    @include tabletAndAbove {
+      max-width: 970px;
+      padding: 0 20px;
+    }
+    @include laptop {
+      max-width: 1150px;
+      padding: 0 20px; /* Narrower padding for laptops and larger screens */
+    }
+    @include largerLaptop {
+      max-width: 1350px;
+      padding: 0 20px;
+    }
+  }
+
+  .footer-header {
+    display: flex;
+    justify-content: space-between;
+
+    @include smallMobile {
+      flex-direction: column;
+    }
+    @include tablet_768 {
+      flex-direction: row;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+
+      @include smallMobile {
+        justify-content: center;
+        margin-top: 20px;
+      }
+      @include tablet_768 {
         position: relative;
-        left: 7px;
-        cursor: pointer;
+        left: 10px;
+      }
+    }
+  }
 
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0; // Start the underline at the bottom of the span
-          left: 0;
-          width: 100%; // Full width immediately
-          height: 0px; // Start with no height
-          background-color: rgba(203, 204, 208, 1); // Border colo
-          transition: height 0.4s ease-in-out; // Smooth transition for height
-        }
+  .footer-line {
+    padding-top: 30px;
 
-        &:hover::after {
-          height: 1px; // Adjust to desired border thickness
-        }
+    @include smallMobile {
+      padding-top: 20px;
+    }
+    @include tablet_768 {
+      padding-top: 30px;
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    color: rgba(203, 204, 208, 1);
+    @include smallMobile {
+      padding-top: 20px;
+    }
+    @include tablet_768 {
+      flex-wrap: nowrap;
+      padding-top: 40px;
+    }
+
+    p {
+      text-align: left;
+      margin: 0;
+
+      @include smallMobile {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 10px;
+      }
+      @include tablet_768 {
+        text-align: left;
+        margin: 0;
+        width: 100%;
+        max-width: 500px;
+      }
+    }
+
+    .footer-bottom-socials {
+      display: flex;
+      gap: 16px;
+
+      @include smallMobile {
+        justify-content: center;
+        width: 100%;
+
+        text-wrap: nowrap;
+      }
+      @include tablet_768 {
+        width: auto;
       }
     }
   }
