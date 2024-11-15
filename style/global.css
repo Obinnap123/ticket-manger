@@ -183,7 +183,6 @@ header .header .nav-bar {
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.05);
   background-color: rgb(255, 255, 255);
-  background-color: black;
 }
 @media only screen and (min-width: 320px) {
   header .header .nav-bar {
